@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дмитрий Маркадеев — Дизайнер · Артист · Соликамск</title>
+    <meta name="description" content="Дмитрий Маркадеев — дизайнер и художник из Соликамска. Мода, фотография, музыка.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0a0a0a;
+            --navy: #0f1923;
+            --navy-light: #1a2744;
+            --white: #f0f0f0;
+            --gray: #777;
+            --gray-light: #b0b0b0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            font-weight: 300;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+        }
+
+        /* ---------- NAV ---------- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: padding 0.3s;
+        }
+
+        nav.scrolled { padding: 0.7rem 2rem; }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 2.5rem; }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--white); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 22px;
+            height: 1.5px;
+            background: var(--white);
+            transition: 0.3s;
+            display: block;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 60%, var(--navy) 0%, var(--black) 65%);
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 9vw, 5.5rem);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            line-height: 1.05;
+        }
+
+        .hero .tagline {
+            font-size: 0.8rem;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .hero .divider {
+            width: 50px;
+            height: 1px;
+            background: var(--gray);
+            margin: 2.5rem auto;
+        }
+
+        .hero .motto {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--gray-light);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .scroll-hint::after {
+            content: '';
+            width: 1px;
+            height: 30px;
+            background: linear-gradient(var(--gray), transparent);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* ---------- SECTIONS ---------- */
+        section { padding: 7rem 2rem; }
+
+        .section-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        /* ---------- ABOUT ---------- */
+        .about {
+            background: var(--navy);
+        }
+
+        .about-grid {
+            max-width: 960px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-portrait {
+            width: 100%;
+            aspect-ratio: 2/3;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        .about-text p {
+            color: var(--gray-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.92rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-top: 0.3rem;
+            display: block;
+        }
+
+        /* ---------- PORTFOLIO ---------- */
+        .portfolio { background: var(--black); }
+
+        .gallery {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 2/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem 1.5rem 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .gallery-item:hover .gallery-caption { opacity: 1; }
+
+        .gallery-caption h3 {
+            font-size: 1.15rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.65rem;
+            color: var(--gray);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        /* ---------- HERITAGE ---------- */
+        .heritage {
+            background: var(--navy);
+            text-align: center;
+        }
+
+        .heritage-content {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .heritage-content p {
+            color: var(--gray-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.92rem;
+        }
+
+        .family-motto {
+            margin-top: 3.5rem;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .family-motto .french {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-style: italic;
+            margin-bottom: 0.8rem;
+        }
+
+        .family-motto .russian {
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* ---------- PHILOSOPHY ---------- */
+        .philosophy {
+            background: var(--black);
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .philosophy blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: var(--gray-light);
+        }
+
+        .philosophy .quote-attr {
+            margin-top: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            background: var(--navy);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer .shop-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        footer .location {
+            color: var(--gray);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        footer .footer-divider {
+            width: 30px;
+            height: 1px;
+            background: rgba(255,255,255,0.15);
+            margin: 2.5rem auto;
+        }
+
+        footer .copyright {
+            color: var(--gray);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+        }
+
+        /* ---------- MOBILE ---------- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.97);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.8rem;
+                text-align: center;
+            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: flex; }
+
+            section { padding: 5rem 1.5rem; }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                max-width: 500px;
+            }
+
+            .about-portrait { max-height: 500px; }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                gap: 1rem;
+            }
+
+            .gallery-caption { opacity: 1; }
+
+            .section-title { margin-bottom: 3rem; }
+
+            .family-motto { padding: 2rem 1.5rem; }
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="#" class="logo">ДМ</a>
+        <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="#about" onclick="closeMenu()">О мастере</a>
+            <a href="#portfolio" onclick="closeMenu()">Портфолио</a>
+            <a href="#heritage" onclick="closeMenu()">Наследие</a>
+            <a href="#contact" onclick="closeMenu()">Контакт</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Дмитрий<br>Маркадеев</h1>
+            <div class="tagline">Дизайнер&ensp;·&ensp;Артист&ensp;·&ensp;Соликамск</div>
+            <div class="divider"></div>
+            <div class="motto">&laquo;&thinsp;Fid&eacute;lit&eacute; et Labeur&thinsp;&raquo;</div>
+        </div>
+        <div class="scroll-hint">Вниз</div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="section-label">01</div>
+        <h2 class="section-title">О мастере</h2>
+        <div class="about-grid">
+            <img src="images/portrait.jpg" alt="Дмитрий Маркадеев" class="about-portrait fade-in" loading="lazy">
+            <div class="about-text fade-in">
+                <p>Дмитрий Маркадеев&nbsp;&mdash; дизайнер и художник, работающий на&nbsp;стыке моды, фотографии и&nbsp;музыки. Потомок французского маркиза де&nbsp;Маркаде, приглашённого Екатериной Великой на&nbsp;Урал в&nbsp;XVIII&nbsp;веке, он&nbsp;несёт в&nbsp;себе синтез европейской утончённости и&nbsp;уральской силы.</p>
+                <p>Продолжатель дела отца&nbsp;&mdash; известного соликамского фотографа&nbsp;&mdash; Дмитрий превратил семейное наследие в&nbsp;уникальный творческий язык. Его минималистичный подход, где чёрное встречается с&nbsp;белым, а&nbsp;тишина&nbsp;&mdash; с&nbsp;ритмом, узнаваем далеко за&nbsp;пределами Пермского края.</p>
+                <p>Сегодня он&nbsp;создаёт из&nbsp;Соликамска&nbsp;&mdash; руководя легендарным &laquo;Фотомагазином&raquo; и&nbsp;превращая повседневное в&nbsp;искусство.</p>
+                <div class="about-stats">
+                    <div>
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">лет в искусстве</span>
+                    </div>
+                    <div>
+                        <span class="stat-number">&infin;</span>
+                        <span class="stat-label">жанров музыки</span>
+                    </div>
+                    <div>
+                        <span class="stat-number">II</span>
+                        <span class="stat-label">поколение</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-label">02</div>
+        <h2 class="section-title">Портфолио</h2>
+        <div class="gallery">
+            <div class="gallery-item fade-in">
+                <img src="images/portfolio-1.jpg" alt="Серия Контрасты" loading="lazy">
+                <div class="gallery-caption">
+                    <h3>Контрасты</h3>
+                    <p>Нью-Йорк &middot; 2024</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="images/portfolio-2.jpg" alt="Городской ритм" loading="lazy">
+                <div class="gallery-caption">
+                    <h3>Городской ритм</h3>
+                    <p>Нью-Йорк &middot; 2024</p>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="images/portfolio-3.jpg" alt="Улицы и тени" loading="lazy">
+                <div class="gallery-caption">
+                    <h3>Улицы и тени</h3>
+                    <p>Нью-Йорк &middot; 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERITAGE -->
+    <section class="heritage" id="heritage">
+        <div class="section-label">03</div>
+        <h2 class="section-title">Наследие</h2>
+        <div class="heritage-content fade-in">
+            <p>В&nbsp;1768&nbsp;году французский маркиз Жан-Антуан де&nbsp;Маркаде прибыл в&nbsp;Россию по&nbsp;личному приглашению Екатерины Великой. Лучший горный инженер Франции был направлен на&nbsp;Урал&nbsp;&mdash; модернизировать добычу металлов. За&nbsp;три года он&nbsp;утроил производство и&nbsp;получил орден Святой Анны.</p>
+            <p>В&nbsp;1785&nbsp;году французское Marcad&eacute; превратилось в&nbsp;русское &laquo;Маркадеев&raquo;&nbsp;&mdash; &laquo;потомок Маркаде&raquo;. Семья получила дворянство и&nbsp;герб с&nbsp;французскими лилиями и&nbsp;уральскими молотами. Более 250&nbsp;лет эта фамилия соединяет Францию и&nbsp;Урал.</p>
+            <div class="family-motto">
+                <div class="french">&laquo;&thinsp;Fid&eacute;lit&eacute; et Labeur&thinsp;&raquo;</div>
+                <div class="russian">Верность и Труд&ensp;&mdash;&ensp;девиз рода Маркадеевых</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="philosophy">
+        <blockquote class="fade-in">
+            &laquo;&thinsp;Музыка&nbsp;&mdash; это то, что между нотами. Дизайн&nbsp;&mdash; это то, что между линиями. Настоящее искусство живёт в&nbsp;паузах.&thinsp;&raquo;
+            <div class="quote-attr">&mdash; Дмитрий Маркадеев</div>
+        </blockquote>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="shop-name">Фотомагазин</div>
+        <div class="location">Соликамск&ensp;·&ensp;Пермский край&ensp;·&ensp;Россия</div>
+        <div class="footer-divider"></div>
+        <div class="copyright">&copy; 2025 Дмитрий Маркадеев. Все права защищены.</div>
+    </footer>
+
+    <script>
+        // Close mobile menu on link click
+        function closeMenu() {
+            document.querySelector('.nav-links').classList.remove('active');
+        }
+
+        // Shrink nav on scroll
+        window.addEventListener('scroll', function() {
+            document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
